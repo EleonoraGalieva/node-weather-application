@@ -9,6 +9,8 @@ console.log(__dirname)
 console.log(path.join(__dirname, '../public'))
 
 const app = express()
+const port = process.env.PORT || 3000
+
 
 // Define paths for express config
 const publicDirectory = path.join(__dirname, '../public')
@@ -83,19 +85,6 @@ app.get('/weather', (req, res) => {
     })
 })
 
-// app.get('/products', (req, res) => {
-//     if (!req.query.search) {
-//         return res.send({
-//             error: 'You must provide a search term'
-//         })
-//     }
-
-//     console.log(req.query.search)
-//     res.send({
-//         products: []
-//     })
-// })
-
 app.get('*', (req, res) => {
     res.render('error', {
         title: 'An error occurred!',
@@ -104,6 +93,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000')
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })
